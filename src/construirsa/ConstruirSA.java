@@ -42,6 +42,12 @@ public class ConstruirSA {
             int registros=ps.executeUpdate();
             System.out.println(" "+registros);*/
             
+            //Eliminar primer empleado ingresado
+            /*String sql="DELETE FROM empleado WHERE idEmpleado=1";
+            PreparedStatement ps=conexion.prepareStatement(sql);
+            int registros=ps.executeUpdate();
+            System.out.println(" "+registros);*/
+            
             //Obtener todos los empleados
             
             /*String sql="SELECT* FROM empleado";
@@ -55,6 +61,19 @@ public class ConstruirSA {
                 System.out.println("Acceso "+resultado.getInt("acceso"));
                 System.out.println("Estado "+resultado.getBoolean("estado"));
             }*/
+            
+            //Obtener las herramientas con stock mayor a 10
+            String sql="SELECT * FROM herramienta WHERE stock >10";
+            PreparedStatement ps=conexion.prepareStatement(sql);
+            ResultSet resultado=ps.executeQuery();
+            while(resultado.next()){
+                System.out.println("Id "+resultado.getInt("idHerramienta"));
+                System.out.println("Nombre "+ resultado.getString("nombre"));
+                System.out.println("Descripcion "+ resultado.getString("descripcion"));
+                System.out.println("Stock "+ resultado.getInt("stock"));
+                System.out.println("Estado "+ resultado.getBoolean("estado"));
+            
+            }
             
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null,"Error al cargar Driver "+ex.getMessage());
